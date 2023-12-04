@@ -1,7 +1,11 @@
+/* eslint-disable no-console */
 import type { Configuration } from 'webpack';
+import { EnvironmentPlugin } from 'webpack';
 
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
+
+const env = process.env.NODE_ENV || 'production';
 
 export const mainConfig: Configuration = {
   /**
@@ -13,7 +17,12 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
-  plugins,
+  plugins: [
+    ...plugins,
+    new EnvironmentPlugin({
+      NODE_ENV: env,
+    }),
+  ],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
   },

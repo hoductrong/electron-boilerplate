@@ -5,10 +5,10 @@
   "description": "My Electron application description",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish",
+    "start": "cross-env NODE_ENV=development electron-forge start",
+    "package": "cross-env NODE_ENV=production electron-forge package",
+    "make": "cross-env NODE_ENV=production electron-forge make",
+    "publish": "cross-env NODE_ENV=production electron-forge publish",
     "lint": "eslint --ext .ts,.tsx .",
     "fix:lint": "prettier --write ."
   },
@@ -34,6 +34,7 @@
     "@typescript-eslint/parser": "^5.0.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.3",
     "babel-loader": "^9.1.3",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.0.0",
     "electron": "27.1.3",
     "eslint": "^8.0.1",
